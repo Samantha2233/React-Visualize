@@ -1,0 +1,23 @@
+// 100 / 7 = 14.28
+$day-width: 14.28%;
+
+.day {
+    position: relative;
+    flex: 1 0 $day-width;
+    max-width: calc(100% / 7);
+    min-height: 130px;
+    padding: 10px;
+    box-shadow: insex 0 1px  1px #000;
+
+    @for $i from 1 to 8 {
+        &.first-index-#{$i} {
+            margin-left: $day-width;
+        }
+    }
+
+    header {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+}

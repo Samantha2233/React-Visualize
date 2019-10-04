@@ -1,0 +1,29 @@
+.week-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .row {
+        &:nth-child(2) {
+            text-align: center;
+        }
+
+        &:last-child {
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        .fas {
+            font-size: 25px;
+            color: lightsalmon;
+            padding: 15px;
+
+            &:hover {
+                color: orange;
+            }
+        }
+    }
+}

@@ -1,18 +1,13 @@
 import React from 'react';
 import Task from '../Task/Task'
+import './AllTasks.css';
 
 const AllTasks = (props) => (
     <div className="component">
         AllTasks
-
-        {props.tasks.map((task, idx) =>
-            <Task
-                task={task}
-                rowIdx={idx}
-                key={idx}
-            />
-        )}
-
+        <ul>
+            <Task tasks={props.tasks} />
+        </ul>
 
 
 
