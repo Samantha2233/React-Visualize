@@ -7,21 +7,32 @@ import "./HeaderMonth.scss";
 
 
 const HeaderMonth = props => (
-    <header className="month-header">
-        <div className="row">
-            <Link to={"/" + props.prevMonth.slug}>
-                <i className="fas fa-chevron-circle-left" />
-            </Link>
+    <div>
+        <header className="month-header">
+            <div className="calendar-nav">
+                <div className="row">
+                    <Link to={"/" + props.prevMonth.slug}>
+                        <i className="fas fa-chevron-circle-left" />
+                    </Link>
+                </div>
+                <div className="row">
+                    <p className="current-date">{props.curMonth.name}</p>
+                </div>
+                <div className="row">
+                    <Link to={"/" + props.nextMonth.slug}>
+                        <i className="fas fa-chevron-circle-right" />
+                    </Link>
+                </div>
+            </div>
+        </header>
+        <div className="color-bars">
+            <div className="red"></div>
+            <div className="orange"></div>
+            <div className='seafoam'></div>
+            <div className="salmon"></div>
+            <div className="black"></div>
         </div>
-        <div className="row">
-            <h1>{props.curMonth.name}</h1>
-        </div>
-        <div className="row">
-            <Link to={"/" + props.nextMonth.slug}>
-                <i className="fas fa-chevron-circle-right" />
-            </Link>
-        </div>
-    </header>
+    </div>
 )
 
 export default HeaderMonth;

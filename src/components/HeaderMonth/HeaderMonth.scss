@@ -1,7 +1,16 @@
+
 .month-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: black;
+
+    .calendar-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .current-date {
+        color: white;
+    }
 
     .row {
         &:nth-child(2) {
@@ -17,7 +26,7 @@
         }
 
         .fas {
-            font-size: 25px;
+            font-size: 20px;
             color: lightsalmon;
             padding: 15px;
 
@@ -27,3 +36,35 @@
         }
     }
 }
+
+.red {
+    height: 10px;
+    background-color: var(--red);
+    border-top: .5px solid darkolivegreen;
+}
+
+.orange {
+    height: 8px;
+    background-color: var(--orange);
+    border-top: 1px solid var(--seafoam);
+}
+.seafoam {
+    height: 9px;
+    background-color: var(--seafoam);
+    border-top: 1px solid var(--seafoam);
+}
+.salmon {
+    height: 8px;
+    background-color: var(--salmon);
+    border-top: 1px solid var(--seafoam);
+}
+.black {
+    height: 8px;
+    background-color: black;
+    border-top: 1px solid var(--seafoam);
+}
+
+
+
+
+

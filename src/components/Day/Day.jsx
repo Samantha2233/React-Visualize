@@ -26,7 +26,7 @@ class Day extends Component {
 
         return (
             <arcticle className={cssClasses}>
-                <button>+</button>
+                <button className="addTaskButton">+</button>
                 <header>{this.props.day}</header>
             </arcticle>
         )

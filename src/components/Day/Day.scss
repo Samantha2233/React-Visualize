@@ -8,6 +8,13 @@ $day-width: 14.28%;
     min-height: 130px;
     padding: 10px;
     box-shadow: insex 0 1px  1px #000;
+    border: 1px solid black;
+
+    &:hover {
+        .addTaskButton {
+            opacity: 1;
+        }
+    }
 
     @for $i from 1 to 8 {
         &.first-index-#{$i} {
@@ -20,4 +27,16 @@ $day-width: 14.28%;
         font-weight: 700;
         margin-bottom: 5px;
     }
+}
+
+.addTaskButton {
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 5px;
+    top: -1px;
+    cursor: pointer;
+    font-size: 35px;
+    color: var(--seafoam);
+    opacity: 0;
 }
