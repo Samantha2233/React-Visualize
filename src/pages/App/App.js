@@ -13,7 +13,8 @@ import Month from '../Month/Month';
 import Week from '../Week/Week';
 import DayPage from '../DayPage/DayPage';
 import AllTasksPage from '../AllTasksPage/AllTasksPage';
-
+import SignUpPage from '../SignUpPage/SignUpPage';
+import LogInPage from '../LogInPage/LogInPage';
 
 class App extends Component {
   state = {
@@ -49,7 +50,6 @@ class App extends Component {
     }));
   };
 
-
   //   H A N D L E R   F U N C T I O N S
   handleChange = e => {
     // console.log(e.target.checkValidity());
@@ -65,9 +65,20 @@ class App extends Component {
     return (
       <div className='App'>
         <Switch>
+          <Route exact path='/signup' render={({ history }) =>
+            <SignUpPage
+              history={history}
+            />
+          } />
+
+          <Route exact path='/login' render={() =>
+            <LogInPage />
+          } />
+
           <Route exact path='/all-tasks' render={props =>
             <AllTasksPage />
           } />
+
           <Route exact path='/day' render={props =>
             <DayPage />
           } />
