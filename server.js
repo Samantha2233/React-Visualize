@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 // const tasksCtrl = require('./controllers/tasksCtr');
 const app = express();
 
-//     D O T  E N V
+//     D A T A B A S E
 const dotenv = require('dotenv');
 dotenv.config();
 require('./config/database');
