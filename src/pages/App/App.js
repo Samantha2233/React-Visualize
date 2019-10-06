@@ -5,9 +5,6 @@ import { Switch, Route, HashRouter } from 'react-router-dom';
 //   C O M P O N E N T S
 import Calendar from '../../hoc/Calendar/Calendar';
 
-//   S T Y L E
-import './App.css';
-
 //   P A G E S 
 import Month from '../Month/Month';
 import Week from '../Week/Week';
@@ -16,22 +13,26 @@ import AllTasksPage from '../AllTasksPage/AllTasksPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
 
+//   S E R V I C E S
+import tasksService from '../../utils/tasksService';
+
+//   S T Y L E
+import './App.css';
 class App extends Component {
-  state = {
-    tasks: [
-      {
-        task: 'Build a React App',
-        time: 'Now',
-        importance: 5
+  constructor() {
+    super();
+    this.state = {
+      tasks: [],
+      newTask: {
+        name: String,
+        color: String,
+        size: String,
+        time: String,
+        completed: Boolean
       },
-    ],
-    newTask: {
-      task: '',
-      time: '',
-      level: 0
-    },
-    pastTasks: [],
-    // formInvalid: true
+      pastTasks: [],
+      // formInvalid: true
+    }
   }
 
   // formRef = React.createRef();
@@ -61,6 +62,16 @@ class App extends Component {
     })
   }
 
+  handleUpdateTasks = (tasks) => {
+    this.setState({ tasks });
+  }
+
+  //   L I F E C Y C L E   M E T H O D S 
+  async componentDidMount() {
+    const tasks = await tasksService.index();
+    this.setState({ tasks });
+  }
+
   render() {
     return (
       <div className='App'>
@@ -76,7 +87,10 @@ class App extends Component {
           } />
 
           <Route exact path='/all-tasks' render={props =>
-            <AllTasksPage />
+            <AllTasksPage
+              tasks={this.state.tasks}
+              handleUpdateTasks={this.handleUpdateTasks}
+            />
           } />
 
           <Route exact path='/day' render={props =>
