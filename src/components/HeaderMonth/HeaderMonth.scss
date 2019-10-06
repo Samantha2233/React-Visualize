@@ -1,6 +1,32 @@
 
 .month-header {
     background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+
+    .logo {
+        color: white;
+        padding-left: 10px;
+        margin: 0;
+        align-self:center;
+        font-family: "Sunset Boulevard", 'Monoton', cursive;
+        font-weight: 100;
+        font-size: 45px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+    }
+
+    .nav-link {
+        color: white;
+        padding: 0 5px;
+        text-decoration: none;
+    }
 
     .calendar-nav {
         display: flex;
@@ -35,7 +61,15 @@
             }
         }
     }
+    .fa-user{
+        color: white;
+        justify-self: end;
+        align-self: center;
+        padding: 10px;
+        font-size: 20px;
+    }
 }
+
 
 .red {
     height: 10px;
