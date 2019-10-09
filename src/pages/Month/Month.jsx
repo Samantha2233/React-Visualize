@@ -6,6 +6,7 @@ import HeaderMonth from "../../components/HeaderMonth/HeaderMonth";
 import HeaderWeekDays from "../../components/HeaderWeekDays/HeaderWeekDays";
 import Day from "../../components/Day/Day";
 
+
 //    M O M E N T . J S
 import moment from "moment";
 
@@ -16,8 +17,10 @@ class Month extends Component {
     state = {
         curMonth: {},
         nextMonth: {},
-        prevMonth: {}
+        prevMonth: {},
     };
+
+
 
     componentDidMount() {
         this.createState(this.props);
@@ -112,7 +115,8 @@ class Month extends Component {
                 />
                 <HeaderWeekDays days={weekdays} />
                 <section className="days">{days}</section>
-            </div>
+
+            </div >
         );
     }
 
