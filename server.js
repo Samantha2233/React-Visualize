@@ -3,13 +3,11 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 // const tasksCtrl = require('./controllers/tasksCtr');
 const app = express();
 
 //     D A T A B A S E
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 require('./config/database');
 
 //     C O R S
@@ -32,7 +30,8 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 //    A P I   R O U T E S  
 // Keep above catch all!
-// app.use('/api/v1/tasks', taksCtrl);
+// app.use('/api/tasks', require('./routes/api/tasks'));
+app.use('/api/users', require('./routes/api/users'));
 
 
 //    C A T C H   A L L 
