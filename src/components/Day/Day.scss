@@ -39,4 +39,8 @@ $day-width: 14.28%;
     font-size: 35px;
     color: var(--seafoam);
     opacity: 0;
+
+    &:hover {
+        text-decoration: none;
+    }
 }

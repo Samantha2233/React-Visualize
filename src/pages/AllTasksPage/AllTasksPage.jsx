@@ -1,45 +1,27 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import tasksService from '../../utils/tasksService';
+import React from 'react';
+import './AllTasksPage.scss';
+import Task from '../../components/Task/Task';
 
-
-//   C O M P O N E N T S
-// import Header from '../../components/Header/Header';
-// import AllTasks from '../../components/AllTasks/AllTasks';
-// import InputBox from '../../components/InputBox/InputBox';
-
-class AllTasksPage extends Component {
-    async componentDidMount() {
-        const tasks = await tasksService.index();
-        // May not need index on taskCtrl?
-        this.props.handleUpdatetasks(tasks);
-    }
-
-    render() {
-        const taskItems = this.props.tasks.map((task, idx) => (
-            <div key={idx}>
-                <h3>{task.name}</h3>
-                <p>{task.color}</p>
-                <p>{task.size}</p>
-                <p>{task.time}</p>
-                <p>{task.completed}</p>
-            </div>
-        ));
-
-        return (
-            <div>
-                <header>All Tasks</header>
-                {this.props.tasks.length ?
-                    <p>{taskItems}</p>
-                    : <h3>You haven't created any tasks yet.</h3>
-                }
-                <div>
-                    <Link to='/month'>Back to Calendar</Link>
+function AllTasksPage(props) {
+    return (
+        <>
+            <div className="background">
+                <h1>All Tasks</h1>
+                <div className='AllTasksPage'>
+                    {props.tasks.map(task =>
+                        <Task
+                            key='task._id'
+                            task={task}
+                            handleDeleteTask={props.handleDeleteTask}
+                        />
+                    )}
+                    {/* <div className='col-1'></div>
+                    <div className='col-2'></div>
+                    <div className='col-3'></div> */}
                 </div>
-            </div >
-        );
-    }
+            </div>
+        </>
+    )
 }
 
 export default AllTasksPage;
-

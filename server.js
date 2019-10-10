@@ -10,6 +10,7 @@ const app = express();
 require('dotenv').config();
 require('./config/database');
 
+
 //     C O R S
 // const corsOptions = {
 //     origin: process.env.CORS_WHITELIST
@@ -30,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 //    A P I   R O U T E S  
 // Keep above catch all!
-// app.use('/api/tasks', require('./routes/api/tasks'));
+app.use('/api/tasks', require('./routes/api/tasks'));
 app.use('/api/users', require('./routes/api/users'));
 
 

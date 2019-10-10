@@ -8,11 +8,12 @@ import Calendar from '../../hoc/Calendar/Calendar';
 
 //   P A G E S 
 import Month from '../Month/Month';
-import AllTasksPage from '../AllTasksPage/AllTasksPage';
 import SignUpPage from '../SignUpPage/SignUpPage';
 import LogInPage from '../LogInPage/LogInPage';
-// import Week from '../Week/Week';
-// import DayPage from '../DayPage/DayPage';
+import CreateTaskForm from '../../components/CreateTaskForm/CreateTaskForm';
+import AllTasksPage from '../AllTasksPage/AllTasksPage';
+import UpdateTaskPage from '../UpdateTaskPage/UpdateTaskPage';
+
 
 //   S E R V I C E S
 import userService from '../../utils/userService';
@@ -25,7 +26,7 @@ class App extends Component {
     super();
     this.state = {
       tasks: [],
-      user: userService.getUser(),
+      user: userService.getUser()
     };
   }
 
@@ -46,6 +47,31 @@ class App extends Component {
     }), () => this.props.history.push('/'));
   }
 
+  handleUpdateTask = async updatedTaskData => {
+    const updatedTask = await tasksService.update(updatedTaskData);
+    const newTasksArray = this.state.tasks.map(task =>
+      task._id === updatedTask._id ? updatedTask : task
+    );
+    this.setState(
+      { tasks: newTasksArray },
+      // Using cb to wait for state to update before rerouting
+      () => this.props.history.push('/')
+    );
+  }
+
+  handleDeleteTask = async id => {
+    await tasksService.deleteOne(id);
+    this.setState(state => ({
+      // Yay, filter returns a NEW array
+      tasks: state.tasks.filter(task => task._id !== id)
+    }), () => this.props.history.push('/'));
+  }
+
+  async componentDidMount() {
+    const tasks = await tasksService.index();
+    this.setState({ tasks });
+  }
+
   render() {
     return (
       <div className='App'>
@@ -54,6 +80,23 @@ class App extends Component {
           handleLogOut={this.handleLogOut}
         />
         <Switch>
+          <Route exact path="/" render={({ history }) =>
+            <AllTasksPage
+              tasks={this.state.tasks}
+              handleDeleteTask={this.handleDeleteTask}
+            />
+          } />
+          <Route exact path='/create-task' render={() =>
+            <CreateTaskForm
+              handleCreateTask={this.handleCreateTask}
+            />
+          } />
+          <Route exact path='/update' render={({ history, location }) =>
+            <UpdateTaskPage
+              handleUpdateTask={this.handleUpdateTask}
+              location={location}
+            />
+          } />
           <Route exact path='/signup' render={({ history }) =>
             <SignUpPage
               history={history}
@@ -68,12 +111,13 @@ class App extends Component {
             />
           } />
 
-          <Route exact path='/all-tasks' render={props =>
-            <AllTasksPage
-              tasks={this.state.tasks}
-              handleUpdateTasks={this.handleUpdateTasks}
+          <Route exact path='/create-task' render={props =>
+            <CreateTaskForm
+              handleCreateTask={this.handleCreateTask}
             />
           } />
+
+
 
           <Route exact path='/month' render={props =>
             <Calendar>
@@ -86,7 +130,7 @@ class App extends Component {
             </Calendar>
           } />
         </Switch>
-      </div>
+      </div >
     );
   };
 }

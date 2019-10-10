@@ -2,7 +2,9 @@ const BASE_URL = '/api/tasks';
 
 export default {
     index,
-    create
+    create,
+    update,
+    deleteOne
 };
 
 function index() {
@@ -10,12 +12,23 @@ function index() {
 }
 
 function create(task) {
-    const options = {
+    return fetch(BASE_URL, {
         method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify(task)
-    };
-    return fetch(BASE_URL, options).then(res => res.json());
+    }).then(res => res.json());
+}
+
+function update(task) {
+    return fetch(`${BASE_URL}/${task._id}`, {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(task)
+    }).then(res => res.json());
+}
+
+function deleteOne(id) {
+    return fetch(`${BASE_URL}/${id}`, {
+        method: 'DELETE'
+    }).then(res => res.json());
 }

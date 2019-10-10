@@ -38,12 +38,12 @@ class SignUpForm extends Component {
 
     render() {
         return (
-            <div className="signup-page">
-                <div className="signup signup-form">
-                    <h1 className=" signup logo">VISUALIZE</h1>
+            <div className="form-page">
+                <div className="form form-form">
+                    <h1 className="form logo">VISUALIZE</h1>
                     <header>Sign Up</header>
                     <form onSubmit={this.handleSubmit} >
-                        <div className="signup form-group">
+                        <div className="form form-group">
                             <div>
                                 <input type='text' placeholder='Name' value={this.state.name} name='name' onChange={this.handleChange} />
                             </div>
@@ -64,17 +64,17 @@ class SignUpForm extends Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <div className="signup form-bottom">
+                            <div className="form form-bottom">
                                 <button disabled={this.isFormInvalid()}>Sign Up</button>
-                                <Link to='/'>Cancel</Link>
                                 <Link to='/login'>Log In?</Link>
+                                <Link to='/'>Cancel</Link>
                             </div>
                         </div>
-                        <div className="signup red"></div>
-                        <div className="signup orange"></div>
-                        <div className='signup seafoam'></div>
-                        <div className="signup salmon"></div>
-                        <div className="signup black"></div>
+                        <div className="form red"></div>
+                        <div className="form orange"></div>
+                        <div className='form seafoam'></div>
+                        <div className="form salmon"></div>
+                        <div className="form black"></div>
                     </form>
                 </div>
             </div>

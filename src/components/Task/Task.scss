@@ -1,0 +1,47 @@
+.task-card {
+  padding: 10px;
+  overflow: scroll;
+  border-radius: 20px;
+}
+
+input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px; 
+}
+
+.task-name {
+  margin: -8px 10px;
+}
+
+.fa-trash-alt {
+  background-color: transparent;
+  justify-self: flex-end;
+}
+
+.fas {
+  align-self: flex-end;
+}
+
+.large {
+  display: flex;
+  height: 500px;
+  width: 100%;
+  // flex-basis: calc(100% / 2);
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.medium {
+  display: flex;
+  height: 300px;
+  // flex-basis: calc(100% / 3);
+  grid-column-start: 2;
+}
+
+.small {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  grid-column-start: 3; 
+}

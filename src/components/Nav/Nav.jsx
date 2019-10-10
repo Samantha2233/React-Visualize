@@ -1,11 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = props => {
     let nav = props.user ?
         <div className="nav-links">
-            <p className="nav-link">{props.user.name}</p>
+            <p className="nav-link">Hi, {props.user.name}</p>
+            <p className="nav-link"></p>
+            <NavLink exact to='/' className='nav-link'>View All Tasks</NavLink>
+            <p className="nav-link"></p>
+            <NavLink exact to='/create-task' className='nav-link'>+ Task</NavLink>
+            <p className="nav-link"></p>
+            <NavLink exact to='/month' className='nav-link'>Calendar</NavLink>
+            <p className="nav-link"></p>
+
             <Link to='/' onClick={props.handleLogOut}>Log Out</Link>
         </div>
         :
@@ -19,7 +27,7 @@ const Nav = props => {
     return (
         <div>
             <div className="nav">
-                <h1 className="logo">VISUALIZE</h1>
+                <Link to='/'><h1 className="logo">VISUALIZE</h1></Link>
                 <div className="dropdown">
                     <button className="btn user-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div><i className="far fa-user"></i></div>
