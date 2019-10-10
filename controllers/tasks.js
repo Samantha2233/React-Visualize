@@ -5,7 +5,8 @@ module.exports = {
     show,
     create,
     delete: deleteOne,
-    update
+    update,
+    complete
 }
 
 async function index(req, res) {
@@ -33,5 +34,11 @@ async function deleteOne(req, res) {
 async function update(req, res) {
     const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.status(200).json(updatedTask);
+}
+
+async function complete(req, res) {
+    console.log(req.params.body);
+    const completeTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(completeTask);
 }
 

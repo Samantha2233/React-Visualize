@@ -14,11 +14,9 @@ import CreateTaskForm from '../../components/CreateTaskForm/CreateTaskForm';
 import AllTasksPage from '../AllTasksPage/AllTasksPage';
 import UpdateTaskPage from '../UpdateTaskPage/UpdateTaskPage';
 
-
 //   S E R V I C E S
 import userService from '../../utils/userService';
 import tasksService from '../../utils/tasksService';
-
 
 import './App.css';
 class App extends Component {
@@ -59,13 +57,28 @@ class App extends Component {
     );
   }
 
+  handleCompleteTask = async (id, completeStatus) => {
+    console.log(completeStatus);
+    const completeTask = await tasksService.complete(id, completeStatus);
+    console.log(completeTask);
+
+    const newTasksArray = this.state.tasks.map(task =>
+      task._id === completeTask._id ? completeTask : task
+    );
+    this.setState(
+      { tasks: newTasksArray },
+      () => this.props.history.push('/')
+    )
+  }
+
   handleDeleteTask = async id => {
     await tasksService.deleteOne(id);
     this.setState(state => ({
-      // Yay, filter returns a NEW array
+      // Filter returns a NEW array
       tasks: state.tasks.filter(task => task._id !== id)
     }), () => this.props.history.push('/'));
   }
+
 
   async componentDidMount() {
     const tasks = await tasksService.index();
@@ -84,6 +97,7 @@ class App extends Component {
             <AllTasksPage
               tasks={this.state.tasks}
               handleDeleteTask={this.handleDeleteTask}
+              handleCompleteTask={this.handleCompleteTask}
             />
           } />
           <Route exact path='/create-task' render={() =>
@@ -124,6 +138,9 @@ class App extends Component {
               <HashRouter>
                 <Switch>
                   <Route exact path="/" component={Month} />
+                  {/* <Route exact path="/" render={subProps =>
+                    <Month user={'hello?'} />
+                  } /> */}
                   <Route path="/:year/:month" component={Month} />
                 </Switch>
               </HashRouter>

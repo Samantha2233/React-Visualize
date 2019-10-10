@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Task.scss';
 
-function Task({ task, handleDeleteTask }) {
+function Task({ task, handleDeleteTask, handleCompleteTask }) {
     return (
 
         <div className={`task-card ${task.color} ${task.size}`}>
-            <input type='checkbox' value='completed' className='check-box' />
+            <input type='checkbox' defaultChecked={task.completed} className='check-box' onClick={() => handleCompleteTask(task._id, !task.completed)} />
+
             <h3 className='task-name'>{task.name}</h3>
             <div className='task-body'>
                 <div>{task.completed}</div>

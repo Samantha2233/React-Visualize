@@ -4,7 +4,8 @@ export default {
     index,
     create,
     update,
-    deleteOne
+    deleteOne,
+    complete
 };
 
 function index() {
@@ -24,6 +25,15 @@ function update(task) {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(task)
+    }).then(res => res.json());
+}
+
+function complete(id, completeStatus) {
+    console.log(completeStatus);
+    return fetch(`${BASE_URL}/${id}/complete`, {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ completed: completeStatus })
     }).then(res => res.json());
 }
 

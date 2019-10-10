@@ -11,6 +11,7 @@ class CreateTaskForm extends Component {
             name: '',
             color: '',
             size: '',
+            date: '',
             completed: false
         }
     };
@@ -52,9 +53,14 @@ class CreateTaskForm extends Component {
                             <div className="form-group">
                                 <select name='size' value={this.state.formData.size} onChange={this.handleChange} className='custom-select' >
                                     <option>Select a Size</option>
-                                    <option value='large col-2'>Large</option>
-                                    <option value='medium col-2'>Medium</option>
-                                    <option value='small col-2'>Small</option>
+                                    <option value='large'>Large</option>
+                                    <option value='medium'>Medium</option>
+                                    <option value='small'>Small</option>
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <select name='date' value={this.state.formData.date} onChange={this.handleChange} className='custom-select' >
+                                    <option>Today</option>
                                 </select>
                             </div>
                         </div>

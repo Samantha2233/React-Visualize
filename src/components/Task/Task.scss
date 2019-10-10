@@ -26,22 +26,17 @@ input[type=checkbox] {
 .large {
   display: flex;
   height: 500px;
-  width: 100%;
-  // flex-basis: calc(100% / 2);
   grid-column-start: 1;
-  grid-row-start: 1;
 }
 
 .medium {
   display: flex;
   height: 300px;
-  // flex-basis: calc(100% / 3);
   grid-column-start: 2;
 }
 
 .small {
   display: flex;
   height: 100px;
-  width: 100%;
   grid-column-start: 3; 
 }

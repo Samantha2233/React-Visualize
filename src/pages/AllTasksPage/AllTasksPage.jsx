@@ -1,23 +1,25 @@
 import React from 'react';
-import './AllTasksPage.scss';
+import { Link } from 'react-router-dom'
 import Task from '../../components/Task/Task';
+import './AllTasksPage.scss';
 
 function AllTasksPage(props) {
     return (
         <>
             <div className="background">
-                <h1>All Tasks</h1>
+                <div className='all-tasks-header'>
+                    <h1>All Tasks</h1>
+                    <Link to='/create-task'><button> + </button></Link>
+                </div>
                 <div className='AllTasksPage'>
                     {props.tasks.map(task =>
                         <Task
                             key='task._id'
                             task={task}
                             handleDeleteTask={props.handleDeleteTask}
+                            handleCompleteTask={props.handleCompleteTask}
                         />
                     )}
-                    {/* <div className='col-1'></div>
-                    <div className='col-2'></div>
-                    <div className='col-3'></div> */}
                 </div>
             </div>
         </>
