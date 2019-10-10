@@ -14,7 +14,7 @@ const Nav = props => {
             <NavLink exact to='/month' className='nav-link'>Calendar</NavLink>
             <p className="nav-link"></p>
 
-            <Link to='/' onClick={props.handleLogOut}>Log Out</Link>
+            <Link to='/login' onClick={props.handleLogOut}>Log Out</Link>
         </div>
         :
         <div className="nav-links">

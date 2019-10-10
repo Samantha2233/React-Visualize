@@ -8,7 +8,7 @@ import userService from '../../utils/userService';
 class LogInPage extends Component {
     state = {
         email: '',
-        password: '',
+        pw: '',
     };
 
     handleChange = (e) => {
@@ -47,7 +47,7 @@ class LogInPage extends Component {
                         </div>
                         <div className="form-group">
                             <div>
-                                <input type="password" placeholder="Password" value={this.state.password} name="password" onChange={this.handleChange} />
+                                <input type="password" placeholder="Password" value={this.state.pw} name="pw" onChange={this.handleChange} />
                             </div>
                         </div>
                         <div className="form-group">

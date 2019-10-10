@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        lowercase: true,
         unique: true
     },
     password: String,
@@ -35,6 +36,7 @@ userSchema.pre('save', function (next) {
 
 userSchema.methods.comparePassword = function (tryPassword, cb) {
     bcrypt.compare(tryPassword, this.password, function (err, isMatch) {
+        if (err) return cb(err);
         cb(null, isMatch);
     })
 }
