@@ -6,7 +6,6 @@ import HeaderMonth from "../../components/HeaderMonth/HeaderMonth";
 import HeaderWeekDays from "../../components/HeaderWeekDays/HeaderWeekDays";
 import Day from "../../components/Day/Day";
 
-
 //    M O M E N T . J S
 import moment from "moment";
 
@@ -17,15 +16,14 @@ class Month extends Component {
     state = {
         curMonth: {},
         nextMonth: {},
-        prevMonth: {},
+        prevMonth: {}
     };
-
-
 
     componentDidMount() {
         this.createState(this.props);
     }
 
+    // FIX THIS componentDidUpdate check to see if props or state has changed
     componentWillReceiveProps(nextProps) {
         this.createState(nextProps, true);
     }
@@ -50,7 +48,7 @@ class Month extends Component {
                     date: curMonth,
                     name: moment(curMonth).format("MMMM YYYY"),
                     days: moment(curMonth).daysInMonth(),
-                    editDay: null
+                    // editDay: null
                 },
                 nextMonth: {
                     date: nextMonth,
@@ -60,21 +58,13 @@ class Month extends Component {
                     date: prevMonth,
                     slug: prevMonth.replace("-", "/")
                 }
+
             },
             () => {
                 console.log(this.state);
             }
         );
     }
-
-    // handleSetEditDay = day => {
-    //     this.setState({
-    //         curMonth: {
-    //             ...this.state.curMonth,
-    //             editDay: day
-    //         }
-    //     });
-    // };
 
     buildDays() {
         const days = [];
@@ -85,6 +75,7 @@ class Month extends Component {
 
         for (let i = 1; i <= this.state.curMonth.days; i++) {
             let date = `${this.state.curMonth.date}-${("0" + i).slice(-2)}`; // Add leading zeros
+            console.log(date);
             props["date"] = date;
             props["day"] = i;
 
@@ -96,16 +87,20 @@ class Month extends Component {
                 delete props["firstDayIndex"];
             }
 
-            days.push(<Day key={i} {...props} />);
+            let tasksInDay = this.props.tasks.filter(task => task.date === date);
+
+            days.push(<Day key={i} tasks={tasksInDay} {...props} />);
         }
 
         return days;
     }
 
     render() {
+
         const weekdays = moment.weekdays();
         const days = this.buildDays();
 
+        console.log(this.props.tasks);
         return (
             <div className="month">
                 <HeaderMonth

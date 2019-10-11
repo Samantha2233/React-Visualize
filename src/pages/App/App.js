@@ -137,10 +137,10 @@ class App extends Component {
             <Calendar>
               <HashRouter>
                 <Switch>
-                  <Route exact path="/" component={Month} />
-                  {/* <Route exact path="/" render={subProps =>
-                    <Month user={'hello?'} />
-                  } /> */}
+                  {/* <Route exact path="/" component={Month} /> */}
+                  <Route exact path="/" render={subProps =>
+                    <Month {...subProps} user={'hello?'} tasks={this.state.tasks} />
+                  } />
                   <Route path="/:year/:month" component={Month} />
                 </Switch>
               </HashRouter>

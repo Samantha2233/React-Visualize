@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './CreateTaskForm.scss';
+import DatePicker from 'react-datepicker';
+import moment from "moment";
 
 
 class CreateTaskForm extends Component {
@@ -11,7 +13,7 @@ class CreateTaskForm extends Component {
             name: '',
             color: '',
             size: '',
-            date: '',
+            date: moment(new Date()).format('YYYY-MM-DD'),
             completed: false
         }
     };
@@ -30,6 +32,14 @@ class CreateTaskForm extends Component {
             invalidForm: !this.formRef.current.checkValidity()
         });
     };
+
+    handleDateChange = selDate => {
+        console.log('SelDate:', selDate);
+        this.setState({
+            date: selDate
+        })
+    };
+
 
     render() {
         return (
@@ -58,11 +68,12 @@ class CreateTaskForm extends Component {
                                     <option value='small'>Small</option>
                                 </select>
                             </div>
-                            <div className="form-group">
-                                <select name='date' value={this.state.formData.date} onChange={this.handleChange} className='custom-select' >
-                                    <option>Today</option>
-                                </select>
-                            </div>
+                            <DatePicker
+                                name='date'
+                                value={this.state.formData.date}
+                                selected={this.state.date}
+                                onChange={this.handleDateChange}
+                            />
                         </div>
                         <div className="form form-bottom">
                             <button type='submit' className='btn' disabled={this.state.invalidForm}>Create Task</button>
