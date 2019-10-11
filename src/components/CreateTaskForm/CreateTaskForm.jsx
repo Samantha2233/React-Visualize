@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './CreateTaskForm.scss';
-import DatePicker from 'react-datepicker';
 import moment from "moment";
+
 
 
 class CreateTaskForm extends Component {
@@ -33,12 +33,6 @@ class CreateTaskForm extends Component {
         });
     };
 
-    handleDateChange = selDate => {
-        console.log('SelDate:', selDate);
-        this.setState({
-            date: selDate
-        })
-    };
 
 
     render() {
@@ -52,14 +46,19 @@ class CreateTaskForm extends Component {
                         </div>
                         <div className="dropdowns">
                             <div className="form-group">
-                                <select name="color" value={this.state.formData.color} onChange={this.handleChange} className="color-options custom-select">
+                                <select name="color" value={this.state.formData.color} onChange={this.handleChange} className='custom-select'>
                                     <option value='select'>Select a Color</option>
                                     <option className='red-task' value='red-task'>Red</option>
+                                    <option className='salmon-task' value='salmon-task'>Pink</option>
                                     <option value='orange-task'>Orange</option>
+                                    <option value='bright-orange-task'>Bright Orange</option>
                                     <option value='yellow-task'>Yellow</option>
+                                    <option value='teal-task'>Teal</option>
+                                    <option value='mint-task'>Mint</option>
                                     <option value='blue-task'>Blue</option>
                                 </select>
                             </div>
+
                             <div className="form-group">
                                 <select name='size' value={this.state.formData.size} onChange={this.handleChange} className='custom-select' >
                                     <option>Select a Size</option>
@@ -68,12 +67,6 @@ class CreateTaskForm extends Component {
                                     <option value='small'>Small</option>
                                 </select>
                             </div>
-                            <DatePicker
-                                name='date'
-                                value={this.state.formData.date}
-                                selected={this.state.date}
-                                onChange={this.handleDateChange}
-                            />
                         </div>
                         <div className="form form-bottom">
                             <button type='submit' className='btn' disabled={this.state.invalidForm}>Create Task</button>
