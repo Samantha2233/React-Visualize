@@ -1,34 +1,39 @@
 //    R E A C T
 import React, { Component } from 'react';
-import { Switch, Link } from 'react-router-dom'
-//    S E R V I C E
-// import tasksService from '../../utils/tasksService';
+import { Link } from 'react-router-dom'
 //    S A S S 
 import './Day.scss';
 
+//    C O M P O N E N T
 class Day extends Component {
     state = {
         tasks: [],
     };
 
     render() {
-
-        const tasks = this.props.tasks;
-
-        const taskLinks = tasks ? tasks.map((t) => <p>{t.name}</p>) : null;
-
-
         const cssClasses = this.props.firstDayIndex
             ? `day first-index-${this.props.firstDayIndex}`
             : "day"
 
+        const tasks = this.props.tasks;
+        const taskLinks = tasks
+            ? tasks.map((t) =>
+                <div className={`taskLink ${t.color}`}>
+                    <div className='container'>
+                        <input type='checkbox' defaultChecked={t.completed} className='check-box' onClick={() => this.props.handleCompleteTask(t._id, !t.completed, this.props.match)} />
+                        <span class='check-box-cal'></span>
+                        <Link to={{ pathname: '/update', state: { t } }} className={`${t.color}`}>{t.completed}{t.name}</Link>
+                    </div>
+                </div>)
+            : null;
+
         return (
             <article className={cssClasses} >
-                <Switch>
-                </Switch>
-                {taskLinks}
-                <Link to='/create-task' className="addTaskButton">+</Link>
+                <div className="addTaskButton">
+                    <Link to='/create-task' >+</Link>
+                </div>
                 <header>{this.props.day}</header>
+                {taskLinks}
             </article>
         )
     }

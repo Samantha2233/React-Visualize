@@ -9,6 +9,7 @@ $day-width: 14.28%;
     padding: 10px;
     box-shadow: insex 0 1px  1px #000;
     border: 1px solid black;
+    overflow: hidden;
 
     &:hover {
         .addTaskButton {
@@ -30,11 +31,15 @@ $day-width: 14.28%;
 }
 
 .addTaskButton {
-    background: transparent;
+    background-color: black;
     border: none;
+    border-radius: 50%;
+
+
     position: absolute;
-    right: 5px;
-    top: -1px;
+    width: 55px;
+    right: -18px;
+    top: -15px;
     cursor: pointer;
     font-size: 35px;
     color: var(--seafoam);
@@ -42,5 +47,73 @@ $day-width: 14.28%;
 
     &:hover {
         text-decoration: none;
+    }
+
+    a {
+        padding-left: 13px;
+        padding-top: 5px;
+        color: var(--extraLightBlue);
+
+        &:hover {
+            color: var(--brightOrange);
+            text-decoration: none;
+        }
+    }
+}
+
+.check-box-cal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  .container input:checked ~ .check-box-cal {
+    background-color: white;
+  }
+  
+  .check-box-cal:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+  
+  .container input:checked ~ .check-box-cal:after {
+    display: block;
+  }
+  
+  .container .check-box-cal:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: 1px solid black;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+.taskLink {
+    display: block;
+    border-radius: 5px;
+    border: 1px solid var(--seafoam);
+    margin: 2px 0;
+
+
+    &:hover {
+        border: 1px solid var(--salmon);
+        text-decoration: none;
+    } 
+
+    a {
+        margin-left: 20px;
+        &:hover{
+            text-decoration: none;
+        }
     }
 }
