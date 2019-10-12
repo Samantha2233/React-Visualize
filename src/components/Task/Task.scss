@@ -1,42 +1,106 @@
 .task-card {
   padding: 10px;
+  margin: 10px;
   overflow: scroll;
   border-radius: 20px;
+  width: 300px;
+
+  // @media screen and (min-width: 600px) {
+  //   width: 400px;
+  // }
 }
 
-input[type=checkbox] {
-  width: 20px;
-  height: 20px;
-  margin-left: 10px; 
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100% ;
 }
 
 .task-name {
-  margin: -8px 10px;
+  margin: 0 10px;
 }
 
-.fa-trash-alt {
+.task-icon {
+  color: black;
   background-color: transparent;
-  justify-self: flex-end;
+  border: none;
+  padding: 0;
 }
 
-.fas {
-  align-self: flex-end;
+
+
+//     C H E C K B O X   S T Y L I N G 
+.container {
+  position: relative;
+  
 }
 
+.container label {
+  opacity: 0;
+}
+
+//     H I D E   D E F A U L T   C H E C K B O X
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  z-index: 30;
+}
+
+//     C U S T O M   C H E C K B O X
+.check-box {
+  position: absolute;
+  top: 0;
+  left: 9px;
+  height: 25px;
+  width: 25px;
+  background: white;;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+// BACKGROUND OF CHECKBOX WHEN CLICKED
+.container input:checked ~ .check-box {
+  background-color: white;
+}
+
+.check-box:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .check-box:after {
+  display: block;
+}
+
+.container .check-box:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+//     T A S K   S I Z E 
 .large {
-  display: flex;
   height: 500px;
-  grid-column-start: 1;
 }
 
 .medium {
-  display: flex;
   height: 300px;
-  grid-column-start: 2;
 }
 
 .small {
-  display: flex;
-  height: 100px;
-  grid-column-start: 3; 
+  height: 100px; 
 }

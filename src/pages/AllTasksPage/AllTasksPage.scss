@@ -3,35 +3,38 @@
 }
 
 .AllTasksPage {
+    display: flex;
     padding: 10px;
-    display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
-    grid-gap: 10px;
-    grid-auto-flow: column;
+    flex-direction: column;
     flex-wrap: wrap;
-
+    align-items: flex-start;
+    align-content: flex-start;
     background-color: black;
-    height: 100vh;
+    height: 90vh;
+    width: 100%;
+    overflow: scroll;
+    @media screen and (max-width: 600px) {
+        background-color: lightcyan;
+        height: 100%;
+    }
 }
 
 .all-tasks-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: flex-end;
 
     h1 {
         margin: 0 0 0 25px;
     }
 
-    button {
-        margin: -10px 10px 0 0 ;
-        color: lightskyblue;
-        background-color: transparent;
-        border: none;
-        font-size: 40px;
+    p {
+        color: white;
+        padding: 10px;
     }
 }
+
+
 
 
 
