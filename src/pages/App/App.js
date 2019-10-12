@@ -1,6 +1,6 @@
 //    R E A C T   I M P O R T S
 import React, { Component } from 'react';
-import { Switch, Route, HashRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 //   C O M P O N E N T S
 import Nav from '../../components/Nav/Nav';
@@ -57,7 +57,21 @@ class App extends Component {
     );
   }
 
-  handleCompleteTask = async (id, completeStatus) => {
+  handleCompleteTask = async (id, completeStatus, match) => {
+    console.log(completeStatus);
+    const completeTask = await tasksService.complete(id, completeStatus);
+    console.log(completeTask);
+
+    const newTasksArray = this.state.tasks.map(task =>
+      task._id === completeTask._id ? completeTask : task
+    );
+    this.setState(
+      { tasks: newTasksArray },
+      () => this.props.history.push(match.url)
+    )
+  }
+
+  handleCompleteTaskOnHome = async (id, completeStatus) => {
     console.log(completeStatus);
     const completeTask = await tasksService.complete(id, completeStatus);
     console.log(completeTask);
@@ -71,7 +85,7 @@ class App extends Component {
     )
   }
 
-  handleDeleteTask = async id => {
+  handleDeleteTask = async (id, match) => {
     await tasksService.deleteOne(id);
     this.setState(state => ({
       // Filter returns a NEW array
@@ -93,22 +107,12 @@ class App extends Component {
           handleLogOut={this.handleLogOut}
         />
         <Switch>
-          <Route exact path="/" render={({ history }) =>
+          <Route exact path="/" render={({ history, match }) =>
             <AllTasksPage
               tasks={this.state.tasks}
               handleDeleteTask={this.handleDeleteTask}
-              handleCompleteTask={this.handleCompleteTask}
-            />
-          } />
-          <Route exact path='/create-task' render={() =>
-            <CreateTaskForm
-              handleCreateTask={this.handleCreateTask}
-            />
-          } />
-          <Route exact path='/update' render={({ history, location }) =>
-            <UpdateTaskPage
-              handleUpdateTask={this.handleUpdateTask}
-              location={location}
+              handleCompleteTaskOnHome={this.handleCompleteTaskOnHome}
+              match={match}
             />
           } />
           <Route exact path='/signup' render={({ history }) =>
@@ -125,29 +129,39 @@ class App extends Component {
             />
           } />
 
-          <Route exact path='/create-task' render={props =>
+          <Route exact path='/create-task' render={() =>
             <CreateTaskForm
               handleCreateTask={this.handleCreateTask}
             />
           } />
+          <Route exact path='/update' render={({ history, location, match }) =>
+            <UpdateTaskPage
+              handleUpdateTask={this.handleUpdateTask}
+              location={location}
+            // history={history}
+            // match={match}
+            />
+          } />
 
-
-
-          <Route exact path='/month' render={props =>
+          <Route exact path="/month" render={subProps =>
             <Calendar>
-              <HashRouter>
-                <Switch>
-                  {/* <Route exact path="/" component={Month} /> */}
-                  <Route exact path="/" render={subProps =>
-                    <Month {...subProps} user={'hello?'} tasks={this.state.tasks} />
-                  } />
-                  <Route path="/:year/:month" component={Month} />
-                </Switch>
-              </HashRouter>
+              <Month {...subProps}
+                tasks={this.state.tasks}
+                handleCompleteTask={this.handleCompleteTask}
+              />
+            </Calendar>
+          } />
+
+          <Route path="/month/:year/:month" render={subProps =>
+            <Calendar>
+              <Month {...subProps}
+                tasks={this.state.tasks}
+                handleCompleteTask={this.handleCompleteTask}
+              />
             </Calendar>
           } />
         </Switch>
-      </div >
+      </div>
     );
   };
 }

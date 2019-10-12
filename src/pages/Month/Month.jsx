@@ -70,7 +70,11 @@ class Month extends Component {
         const days = [];
         const props = {
             editDay: this.state.curMonth.editDay,
-            handleSetEditDay: this.handleSetEditDay
+            handleSetEditDay: this.handleSetEditDay,
+            history: this.props.history,
+            location: this.props.location,
+            match: this.props.match,
+
         };
 
         for (let i = 1; i <= this.state.curMonth.days; i++) {
@@ -89,7 +93,7 @@ class Month extends Component {
 
             let tasksInDay = this.props.tasks.filter(task => task.date === date);
 
-            days.push(<Day key={i} tasks={tasksInDay} {...props} />);
+            days.push(<Day key={i} tasks={tasksInDay} {...props} handleCompleteTask={this.props.handleCompleteTask} />);
         }
 
         return days;
