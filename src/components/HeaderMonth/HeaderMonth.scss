@@ -20,6 +20,10 @@
         padding-top: 15px;
     }
 
+    .left, .right {
+        z-index: 30;
+    }
+
     .row {
         &:nth-child(2) {
             text-align: center;
@@ -33,10 +37,17 @@
             font-size: 40px;
         }
 
+        p{
+            z-index: 0;
+        }
+
+   
+
         .fas {
             font-size: 20px;
             color: lightsalmon;
             padding: 15px;
+            z-index: 10;
 
             &:hover {
                 color: orange;

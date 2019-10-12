@@ -11,16 +11,16 @@ const HeaderMonth = props => {
         <div>
             <header className="month-header">
                 <div className="calendar-nav">
-                    <div className="row">
-                        <Link to={"/" + props.prevMonth.slug}>
+                    <div className="row left">
+                        <Link to={"/month/" + props.prevMonth.slug}>
                             <i className="fas fa-chevron-circle-left" />
                         </Link>
                     </div>
                     <div className="row">
                         <p className="current-date">{props.curMonth.name}</p>
                     </div>
-                    <div className="row">
-                        <Link to={"/" + props.nextMonth.slug}>
+                    <div className="row right">
+                        <Link to={"/month/" + props.nextMonth.slug}>
                             <i className="fas fa-chevron-circle-right" />
                         </Link>
                     </div>
