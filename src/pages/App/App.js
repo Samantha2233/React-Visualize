@@ -1,6 +1,6 @@
 //    R E A C T   I M P O R T S
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 //   C O M P O N E N T S
 import Nav from '../../components/Nav/Nav';
@@ -57,6 +57,14 @@ class App extends Component {
     );
   }
 
+  handleDeleteTask = async (id, match) => {
+    await tasksService.deleteOne(id);
+    this.setState(state => ({
+      // Filter returns a NEW array
+      tasks: state.tasks.filter(task => task._id !== id)
+    }), () => this.props.history.push('/'));
+  }
+
   handleCompleteTask = async (id, completeStatus, match) => {
     console.log(completeStatus);
     const completeTask = await tasksService.complete(id, completeStatus);
@@ -85,15 +93,6 @@ class App extends Component {
     )
   }
 
-  handleDeleteTask = async (id, match) => {
-    await tasksService.deleteOne(id);
-    this.setState(state => ({
-      // Filter returns a NEW array
-      tasks: state.tasks.filter(task => task._id !== id)
-    }), () => this.props.history.push('/'));
-  }
-
-
   async componentDidMount() {
     const tasks = await tasksService.index();
     this.setState({ tasks });
@@ -108,12 +107,19 @@ class App extends Component {
         />
         <Switch>
           <Route exact path="/" render={({ history, match }) =>
-            <AllTasksPage
-              tasks={this.state.tasks}
-              handleDeleteTask={this.handleDeleteTask}
-              handleCompleteTaskOnHome={this.handleCompleteTaskOnHome}
-              match={match}
-            />
+            userService.getUser() ?
+              <AllTasksPage
+                tasks={this.state.tasks}
+                handleDeleteTask={this.handleDeleteTask}
+                handleCompleteTaskOnHome={this.handleCompleteTaskOnHome}
+                filter={this.state.filter}
+                handleFilterChange={this.handleFilterChange}
+                handleFilterSubmit={this.handleFilterSubmit}
+                match={match}
+              />
+              :
+              <Redirect to='/login' />
+
           } />
           <Route exact path='/signup' render={({ history }) =>
             <SignUpPage
@@ -130,35 +136,47 @@ class App extends Component {
           } />
 
           <Route exact path='/create-task' render={() =>
-            <CreateTaskForm
-              handleCreateTask={this.handleCreateTask}
-            />
+            userService.getUser() ?
+              <CreateTaskForm
+                handleCreateTask={this.handleCreateTask}
+              />
+              :
+              <Redirect to='/login' />
           } />
           <Route exact path='/update' render={({ history, location, match }) =>
-            <UpdateTaskPage
-              handleUpdateTask={this.handleUpdateTask}
-              location={location}
-            // history={history}
-            // match={match}
-            />
+            userService.getUser() ?
+              <UpdateTaskPage
+                handleUpdateTask={this.handleUpdateTask}
+                location={location}
+              // history={history}
+              // match={match}
+              />
+              :
+              <Redirect to='/login' />
           } />
 
           <Route exact path="/month" render={subProps =>
-            <Calendar>
-              <Month {...subProps}
-                tasks={this.state.tasks}
-                handleCompleteTask={this.handleCompleteTask}
-              />
-            </Calendar>
+            userService.getUser() ?
+              <Calendar>
+                <Month {...subProps}
+                  tasks={this.state.tasks}
+                  handleCompleteTask={this.handleCompleteTask}
+                />
+              </Calendar>
+              :
+              <Redirect to='/login' />
           } />
 
           <Route path="/month/:year/:month" render={subProps =>
-            <Calendar>
-              <Month {...subProps}
-                tasks={this.state.tasks}
-                handleCompleteTask={this.handleCompleteTask}
-              />
-            </Calendar>
+            userService.getUser() ?
+              <Calendar>
+                <Month {...subProps}
+                  tasks={this.state.tasks}
+                  handleCompleteTask={this.handleCompleteTask}
+                />
+              </Calendar>
+              :
+              <Redirect to='/login' />
           } />
         </Switch>
       </div>

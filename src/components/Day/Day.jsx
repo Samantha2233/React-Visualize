@@ -8,6 +8,7 @@ import './Day.scss';
 class Day extends Component {
     state = {
         tasks: [],
+        showModal: false
     };
 
     render() {
@@ -22,7 +23,7 @@ class Day extends Component {
                     <div className='container'>
                         <input type='checkbox' defaultChecked={t.completed} className='check-box' onClick={() => this.props.handleCompleteTask(t._id, !t.completed, this.props.match)} />
                         <span class='check-box-cal'></span>
-                        <Link to={{ pathname: '/update', state: { t } }} className={`${t.color}`}>{t.completed}{t.name}</Link>
+                        <p className={`${t.color}`}>{t.completed}{t.name}</p>
                     </div>
                 </div>)
             : null;

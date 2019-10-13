@@ -110,8 +110,9 @@ $day-width: 14.28%;
         text-decoration: none;
     } 
 
-    a {
+    p {
         margin-left: 20px;
+        margin-bottom: 0;
         &:hover{
             text-decoration: none;
         }

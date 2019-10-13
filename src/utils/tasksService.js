@@ -1,3 +1,5 @@
+import tokenService from './tokenService';
+
 const BASE_URL = '/api/tasks';
 
 export default {
@@ -15,7 +17,10 @@ function index() {
 function create(task) {
     return fetch(BASE_URL, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
         body: JSON.stringify(task)
     }).then(res => res.json());
 }
@@ -23,7 +28,10 @@ function create(task) {
 function update(task) {
     return fetch(`${BASE_URL}/${task._id}`, {
         method: 'PUT',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
         body: JSON.stringify(task)
     }).then(res => res.json());
 }
@@ -32,7 +40,10 @@ function complete(id, completeStatus) {
     console.log(completeStatus);
     return fetch(`${BASE_URL}/${id}/complete`, {
         method: 'PUT',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
         body: JSON.stringify({ completed: completeStatus })
     }).then(res => res.json());
 }

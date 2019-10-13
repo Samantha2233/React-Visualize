@@ -23,15 +23,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
-//     body parser helps ?
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
 
 
 
 //    A P I   R O U T E S  
 // Keep above catch all!
 app.use('/api/tasks', require('./routes/api/tasks'));
+app.use(require('./config/auth'));
 app.use('/api/users', require('./routes/api/users'));
 
 
