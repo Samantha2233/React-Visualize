@@ -18,4 +18,7 @@ MERN Stack
 * Jason Web Tokens
 
 ### Next Steps
+* Add drag and drop functionality
+* Add CRUD to Calendar
+* Add dynamic styling to calenadar (highlight today's date, selection, etc.)
 
