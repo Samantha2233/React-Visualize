@@ -4,8 +4,7 @@
 <img src="/public/images/Screenshots/AllTasksPage.png" alt="AllTasksPage Page Screenshot">
 <img src="/public/images/Screenshots/Calendar.png" alt="Calendar Page Screenshot">
 
-
-<!-- [Visualize Task Manager](https://visualize.herokuapp.com) -->
+[Visualize Task Manager](https://visualize-app.herokuapp.com)
 
 ### Technologies (Languages & Frameworks)
 MERN Stack

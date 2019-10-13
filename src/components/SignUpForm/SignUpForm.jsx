@@ -40,7 +40,7 @@ class SignUpForm extends Component {
         return (
             <div className="form-page">
                 <div className="form form-form">
-                    <h1 className="form logo">VISUALIZE</h1>
+                    <img className="logo lg" src="../../../images/VISUALIZE-white.png" />
                     <header>Sign Up</header>
                     <form onSubmit={this.handleSubmit} >
                         <div className="form form-group">
