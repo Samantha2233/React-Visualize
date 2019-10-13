@@ -1,6 +1,6 @@
 ### Visualize
 Prioritize your tasks by size and color!
-<img src="public/images/Screenshots/login" alt="Login Page Screenshot" width="300px">
+<img src="/public/images/Screenshots/Login.png" alt="Login Page Screenshot" width="300px">
 
 <!-- [Visualize Task Manager](https://visualize.herokuapp.com) -->
 
@@ -12,6 +12,7 @@ MERN Stack
 * Node
 * Moment.js
 * Bootstrap
+* Jason Web Tokens
 
 ### Next Steps
 
