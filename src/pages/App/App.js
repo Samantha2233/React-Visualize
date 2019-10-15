@@ -99,12 +99,22 @@ class App extends Component {
   }
 
   render() {
+    // Conditional for displaying the nav
+    // if(this.state.user) {
+
+    // }
+
     return (
       <div className='App'>
-        <Nav
-          user={this.state.user}
-          handleLogOut={this.handleLogOut}
-        />
+        {this.state.user ?
+          <Nav
+            user={this.state.user}
+            handleLogOut={this.handleLogOut}
+          />
+          :
+          null
+        }
+
         <Switch>
           <Route exact path="/" render={({ history, match }) =>
             userService.getUser() ?
@@ -148,8 +158,6 @@ class App extends Component {
               <UpdateTaskPage
                 handleUpdateTask={this.handleUpdateTask}
                 location={location}
-              // history={history}
-              // match={match}
               />
               :
               <Redirect to='/login' />

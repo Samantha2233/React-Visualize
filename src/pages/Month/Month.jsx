@@ -101,7 +101,7 @@ class Month extends Component {
 
     render() {
 
-        const weekdays = moment.weekdays();
+        const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         const days = this.buildDays();
 
         console.log(this.props.tasks);
