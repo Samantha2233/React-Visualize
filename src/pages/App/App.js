@@ -99,10 +99,6 @@ class App extends Component {
   }
 
   render() {
-    // Conditional for displaying the nav
-    // if(this.state.user) {
-
-    // }
 
     return (
       <div className='App'>

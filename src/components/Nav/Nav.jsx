@@ -28,7 +28,6 @@ const Nav = props => {
         <div>
             <div className="nav">
                 <div className="logo-link">
-                    {/* <Link to='/'><h1 className="logo">VISUALIZE</h1></Link> */}
                     <Link to='/'><img className="logo" src="../../../images/VISUALIZE-white.png" alt="Logo" /></Link>
                 </div>
                 <div className="dropdown">
