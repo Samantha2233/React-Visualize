@@ -14,7 +14,7 @@ MERN Stack
 * Node
 * Moment.js
 * Bootstrap
-* Jason Web Tokens
+* JSON Web Tokens
 
 ### Next Steps
 * Add drag and drop functionality
